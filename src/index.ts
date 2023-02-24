@@ -20,6 +20,10 @@ const app = express();
 app.use(morgan("dev"))
 app.use(urlencoded({extended: true}))
 
+app.get("/healthcheck", async (req, res) => {
+    res.status(200).send()
+})
+
 app.post("/notes", async (req: Request<{}, {},{title: string, author: string, content: string}>, res) => {
     await client.query({
         text: "INSERT INTO notes(id, title, author, content) VALUES ($1, $2, $3, $4)",
