@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  express_note_app:
+    container_name: express_note_app
+    image: express-note:latest
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: 8000
+      DB_HOST: express_note_db
+      DB_NAME: express_note
+      DB_USER: express_note
+      DB_PASSWORD: secret
+    depends_on:
+      - express_note_db
+  express_note_db:
+    container_name: express_note_db
+    image: postgres:15.1
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: express_note
+      POSTGRES_USER: express_note
+      POSTGRES_PASSWORD: secret
