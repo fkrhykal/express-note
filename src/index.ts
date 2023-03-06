@@ -5,7 +5,7 @@ import { randomUUID } from "crypto";
 import morgan from "morgan";
 
 const port = parseInt(env.PORT ?? "8080");
-const host = env.HOST ?? "localhost";
+const host = env.HOST ?? "0.0.0.0";
 
 const client = new Client({
     database: env.DB_NAME ?? "express_note",
